@@ -33,7 +33,7 @@ sns.set_context("talk")
 # -------------------
 # Create the lineplot
 # -------------------
-plt.figure(figsize=(8, 8))  # 8 inches * 64 dpi = 512px
+plt.figure(figsize=(8, 8), dpi=64)  # Forces 512x512 pixels
 sns.lineplot(
     data=df,
     x="Month",
@@ -48,9 +48,9 @@ plt.xlabel("Month")
 plt.ylabel("Revenue ($)")
 plt.xticks(rotation=45)
 
-# -------------------
-# Save as 512x512 PNG
-# -------------------
-plt.tight_layout()
-plt.savefig("chart.png", dpi=64, bbox_inches='tight')
+# Adjust padding manually instead of bbox_inches='tight'
+plt.subplots_adjust(left=0.12, right=0.95, top=0.9, bottom=0.15)
+
+# Save without cropping
+plt.savefig("chart.png", dpi=64)
 plt.close()
